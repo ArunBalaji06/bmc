@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Helpers\UuidModel;
 
 class Car extends Model
 {
-    use HasFactory, Uuid;
+    use HasFactory, UuidModel;
     protected $table='cars';
     protected $fillable = 
-    ['model','seating_capacity','price','availability'];
+    ['owner_id','model','seating_capacity','price','photo','availability'];
 }

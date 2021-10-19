@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarRegisterController;
+use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -27,6 +28,7 @@ Route::get('/post-login',[AuthController::class,'postLogin'])->name('postlogin')
 
 // Car Registration //
 Route::get('/car-register',[CarRegisterController::class,'getRegister'])->name('car.get_register');
+Route::post('/post-car-register',[CarRegisterController::class,'postRegister'])->name('car.post_register');
 
-
-Route::get('/bmc',[AuthController::class,'index'])->name('bmc');
+//Dashboard
+Route::get('/bmc',[DashboardController::class,'index'])->name('bmc');

@@ -14,7 +14,7 @@ class AddImageToCarsTable extends Migration
     public function up()
     {
         Schema::table('cars', function (Blueprint $table) {
-            
+            $table->string('photo')->after('availability')->nullable();
         });
     }
 

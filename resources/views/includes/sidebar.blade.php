@@ -12,7 +12,7 @@
             </a>
           </li>
           <li class="nav-item pt-3">
-            <a class="nav-link d-block" href="#">
+            <a class="nav-link d-block" href="/car-register">
             <span class="tiny material-icons">directions_car</span>
               <span class="font-weight-normal menu-title" style="margin-left: 6px; margin-top:-13px;">My cars</span>
             </a>

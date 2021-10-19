@@ -52,7 +52,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" name="confirm-password" class="form-control" />
+                      <input type="password" name="confirm_password" class="form-control" />
                       <label class="form-label" for="form3Example4cd">Repeat your password</label>
                     </div>
                   </div>
@@ -70,8 +70,8 @@
               </div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-registration/draw1.png" class="img-fluid" alt="Sample image">
-
+                <img src="{{asset('images/logo/18.jpg')}}" style="height:100px;position:absolute;left:450px;top:-40px" class="img-fluid" alt="Sample image">
+                <img src="{{asset('images/car/car-register.jpg')}}" class="img-fluid" alt="register car">
               </div>
             </div>
           </div>

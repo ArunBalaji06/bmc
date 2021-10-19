@@ -8,7 +8,7 @@
       
       <!-- partial -->
       @include('includes.settings')
-      @include('includes.header')
+      <!-- @include('includes.header') -->
       <!-- partial -->
         <!-- partial:partials/_navbar.html -->
         <!-- partial -->
@@ -133,11 +133,12 @@
               </div>
             </div>
             <!-- image card row starts here -->
+            @foreach($cars as $car)
             <div class="row">
               <div class="col-sm-4 stretch-card grid-margin">
                 <div class="card">
                   <div class="card-body p-0">
-                    <img class="img-fluid w-100" src="../template/assets/images/dashboard/img_1.jpg" alt="" />
+                    <img class="img-fluid w-100" src="{{ asset('owner/registered-car/'.$car)}}" alt="" />
                   </div>
                   <div class="card-body px-3 text-dark">
                     <div class="d-flex justify-content-between">
@@ -153,7 +154,8 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-4 stretch-card grid-margin">
+              @endforeach
+              <!-- <div class="col-sm-4 stretch-card grid-margin">
                 <div class="card">
                   <div class="card-body p-0">
                     <img class="img-fluid w-100" src="../template/assets/images/dashboard/img_2.jpg" alt="" />
@@ -190,7 +192,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
             <!-- table row starts here -->
             <div class="row">
