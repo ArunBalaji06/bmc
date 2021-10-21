@@ -17,8 +17,6 @@ class CreateComplainsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('rental_id')->nullable(false);
             $table->foreign('rental_id')->references('id')->on('rentals')->onDelete('cascade')->onUpdate('cascade');
-            $table->uuid('client_id')->nullable(false);
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade')->onUpdate('cascade');
             $table->text('complain_description')->nullable();
             $table->timestamps();
         });

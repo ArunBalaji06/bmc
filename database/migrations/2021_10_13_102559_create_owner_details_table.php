@@ -17,6 +17,7 @@ class CreateOwnerDetailsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('owner_id')->nullable(false);
             $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('owner_image')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('address')->nullable();
             $table->timestamps();

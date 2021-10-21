@@ -15,9 +15,7 @@ class CreateClientProofsTable extends Migration
     {
         Schema::create('client_proofs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('client_id')->nullable(false);
             $table->uuid('client_detail_id')->nullable(false);
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('client_detail_id')->references('id')->on('client_details')->onDelete('cascade')->onUpdate('cascade');
             $table->string('client_proof_front');
             $table->string('client_proof_back');

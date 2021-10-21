@@ -15,8 +15,6 @@ class CreateOwnerProofsTable extends Migration
     {
         Schema::create('owner_proofs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('owner_id')->nullable(false);
-            $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade')->onUpdate('cascade');
             $table->uuid('owner_detail_id')->nullable(false);
             $table->foreign('owner_detail_id')->references('id')->on('owner_details')->onDelete('cascade')->onUpdate('cascade');
             $table->string('owner_proof_front')->nullable();

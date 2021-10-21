@@ -45,11 +45,15 @@ class AuthController extends Controller
         if($email) {
             $password = $this->owner->where('password',$request->password)->first();
             $request->session()->put('id',$email->id);
-            return redirect('bmc');
+            return redirect('/bmc');
         } else {
-            return back();
+            return redirect('/register');
         }
-        
+    }
+
+    public function logout() {
+        Session::flush();
+        return redirect('/login');
     }
 
     
