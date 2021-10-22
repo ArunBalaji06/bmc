@@ -27,9 +27,11 @@ Route::get('/login',[AuthController::class,'getLogin'])->name('getlogin');
 Route::get('/post-login',[AuthController::class,'postLogin'])->name('postlogin');
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
-// Car Registration //
+// Car-Registration //
 Route::get('/car-register',[CarRegisterController::class,'getRegister'])->name('car.get_register');
 Route::post('/post-car-register',[CarRegisterController::class,'postRegister'])->name('car.post_register');
 
-//Dashboard
+//Owner-Dashboard
 Route::get('/bmc',[DashboardController::class,'index'])->name('bmc');
+Route::get('/view-car/{id}',[DashboardController::class,'viewCarDetails'])->name('owner.view_car');
+

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Helpers\UuidModel;
 use App\Models\Owner;
 use App\Models\Car;
+use App\Models\Requests;
 
 class Car extends Model
 {
@@ -21,6 +22,6 @@ class Car extends Model
     }
 
     public function request(){
-        return $this->hasMany(Request::class,'car_id','id');
+        return $this->hasMany(Requests::class,'car_id','id');
     }
 }

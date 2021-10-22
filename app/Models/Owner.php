@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Helpers\UuidModel;
 use App\Models\Car;
-use App\Models\Request;
+use App\Models\Requests;
 use App\Models\OwnerDetail;
 
 class Owner extends Model
@@ -21,7 +21,7 @@ class Owner extends Model
     }
 
     public function request() {
-        return $this->hasMany(Request::class,'owner_id','id');
+        return $this->hasMany(Requests::class,'owner_id','id');
     }
 
     public function ownerDetail() {

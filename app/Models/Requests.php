@@ -10,7 +10,7 @@ use App\Models\Car;
 use App\Models\Payment;
 
 
-class Request extends Model
+class Requests extends Model
 {
     use HasFactory, Uuid;
     protected $table='requests';
