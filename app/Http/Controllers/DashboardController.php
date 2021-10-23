@@ -22,6 +22,7 @@ class DashboardController extends Controller
         $this->damage   = $damage;
     }
  
+    // Owner dashboard->get
     public function index() {
         $ownerId = Session::get('id');
         $cars = $this->car->where('owner_id',$ownerId)->get();
@@ -29,19 +30,5 @@ class DashboardController extends Controller
         $transaction = $this->payment->where('request_id',$requ->id)->get();
         return view('dashboard',compact('cars','requ','transaction'));
     }
-
-    public function viewCarDetails($id) {
-        $ownerId = Session::get('id');
-        $viewCar = $this->car->where('id',$id)
-                             ->with('request')
-                             ->with('request.client')
-                             ->with('request.payment')
-                             ->get();
-        $carRental = $this->rental->where('payment_id',$viewCar->request->payment->id)
-                                  ->with('damage')
-                                  ->with('complain')
-                                  ->get();
-    }
-
 
 }
