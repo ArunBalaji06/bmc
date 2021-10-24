@@ -65,14 +65,55 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-    // Owner profile
+    // Owner profile->post
+    public function firstProfile(OwnerProfileRequest $request) {
+        try{
+            if (request()->hasFile('photo')) {   
+                $image = $this->commonImageUpload($request->photo, 'owner-image');
+            }
+            $findOwner = $this->ownerDetail->where('owner_id',$request->id)->create([
+                'owner_id'     => $request->id,
+                'phone_number' => $request->phone_number,
+                'address'      => $request->address,
+                'photo'        => $image
+            ]);
+            return redirect('/view-owner-profile')->with('success','profile added successfully!');
+            }
+        catch(Exception $exception) {
+            Log::error('Profile adding error'.$exception->getMessage());
+            return back()->with('error',$exception->getMessage());
+        }
+    }
+
+    // Owner proof
+    public function proofOwner(Request $request) {
+        try{
+            $ownerId = Session::get('id');
+            if (request()->hasFile('owner_proof_front')) {   
+                $image1 = $this->commonImageUpload($request->photo, 'owner-proof');
+            }
+            if (request()->hasFile('owner_proof_back')) {   
+                $image2 = $this->commonImageUpload($request->photo, 'owner-proof');
+            }
+            $findDetail = $this->ownerDetail->where('owner_id',$ownerId)->first();
+            $findOwner = $this->ownerProof->create([
+                'owner_detail_id'     => $findDetail->id,
+                'owner_proof_front' => $image1,
+                'owner_proof_back'      => $image2,
+            ]);
+            return redirect('/view-owner-profile')->with('success','proof added successfully!');
+        } catch(Exception $exception) {
+            Log::error('Profile proof error'.$exception->getMessage());
+            return back()->with('error',$exception->getMessage());
+        }
+    }
 
     // Owner view profile-page->get
     public function viewProfile() {
         $ownerId = Session::get('id');
         $detail = $this->ownerDetail->where('owner_id',$ownerId)->first();
         $proof = $this->ownerProof->where('owner_detail_id',$detail->id)->first();
-        return view('/dashboard',compact('detail','proof'));
+        return view('owner.owner-profile',compact('detail','proof'));
     }
 
     // Owner update profile->post
@@ -81,11 +122,13 @@ class AuthController extends Controller
             if (request()->hasFile('photo')) {   
                 $image = $this->commonImageUpload($request->photo, 'owner-image');
             }
-            $ownerId = Session::get('id');
-            $data = $request->except(['photo']);
-            $data1=array_merge($data, ['owner_image'=>$image, 'owner_id'=>$ownerId]);
-            $store = $this->ownerDetail->create($data1);
-            return back()->with('success','Profile updated successfully!');
+            $findOwner = $this->ownerDetail->where('owner_id',$request->id)->update([
+                'owner_id'     => $ownerId,
+                'phone_number' => $request->phone_number,
+                'address'      => $request->address,
+                'photo'        => $image
+            ]);
+            return back()->with('success','Owner profile updated successfully');
             }
         catch(Exception $exception) {
             Log::error('Profile update error'.$exception->getMessage());

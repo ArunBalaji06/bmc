@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OwnerProfileRequest extends FormRequest
+class RejectBookingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class OwnerProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required',
-            'phone_number' => 'required|min:10|max:10',
-            'address' => 'required|min:3',
+            'description' => 'required|min:8'
         ];
     }
 }
