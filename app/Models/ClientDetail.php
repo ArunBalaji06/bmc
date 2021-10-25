@@ -4,11 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Client;
+use App\Models\ClientProof;
 
 class ClientDetail extends Model
 {
     use HasFactory, Uuid;
     protected $table='client_details';
     protected $fillable = 
-    ['phone_number','address'];
+    ['client_id','client_image','phone_number','address'];
+
+    public function client() {
+        return $this->belongsTo(Client::class,'client_id','id');
+    }
+
+    public function clientProof() {
+        return $this->hasMany(ClientProof::class,'client_detail_id','id');
+    }
 }

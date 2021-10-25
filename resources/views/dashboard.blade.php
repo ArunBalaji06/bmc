@@ -28,8 +28,8 @@
                     <p class="m-0">ADE-00234</p>
                   </a>
                 </div>
-                <button type="button" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
-                  <i class="mdi mdi-plus-circle"></i> Add Prodcut </button>
+                <a href="/logout" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
+                   Logout </a>
               </div>
             </div>
             <!-- first row starts here -->
@@ -133,16 +133,17 @@
               </div>
             </div>
             <!-- image card row starts here -->
+            <div class="row col-md-12">
             @foreach($cars as $car)
-            <div class="row">
-              <div class="col-sm-4 stretch-card grid-margin">
+            <div class="">
+              <div class="col-sm-4 col-md-3 stretch-card grid-margin">
                 <div class="card">
                   <div class="card-body p-0">
                     <img class="img-fluid w-100" src="{{ asset('owner/registered-car/'.$car)}}" alt="" />
                   </div>
                   <div class="card-body px-3 text-dark">
                     <div class="d-flex justify-content-between">
-                      <p class="text-muted font-13 mb-0">ENTIRE APARTMENT</p>
+                      <p class="text-muted font-13 mb-0"></p>
                       <i class="mdi mdi-heart-outline"></i>
                     </div>
                     <h5 class="font-weight-semibold"> Cosy Studio flat in London </h5>
@@ -154,7 +155,9 @@
                   </div>
                 </div>
               </div>
+              
               @endforeach
+              </div>
               <!-- <div class="col-sm-4 stretch-card grid-margin">
                 <div class="card">
                   <div class="card-body p-0">
@@ -589,7 +592,7 @@
             </div>
           </div>
           <!-- content-wrapper ends -->
-         @include('includes.footer')
+         <!-- @include('includes.footer') -->
         </div>
         <!-- main-panel ends -->
       </div>

@@ -17,6 +17,7 @@ class CreateClientDetailsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('client_id')->nullable(false);
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('client_image')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('address')->nullable();
             $table->timestamps();
