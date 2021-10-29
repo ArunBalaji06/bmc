@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item nav-profile border-bottom">
-            <a href="#" class="nav-link flex-column">
+            <a href="/view-owner-profile" class="nav-link flex-column">
               <div class="nav-profile-image">
                 <img src="../template/assets/images/faces/avatar.jpg" alt="profile" />
                 <!--change to offline or busy as needed-->

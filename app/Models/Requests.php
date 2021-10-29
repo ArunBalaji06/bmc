@@ -8,11 +8,12 @@ use App\Models\Owner;
 use App\Models\Client;
 use App\Models\Car;
 use App\Models\Payment;
+use App\Helpers\UuidModel;
 
 
 class Requests extends Model
 {
-    use HasFactory, Uuid;
+    use HasFactory, UuidModel;
     protected $table='requests';
     protected $fillable = 
     ['owner_id','client_id','car_id','status'];

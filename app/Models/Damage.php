@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Rental;
 use App\Models\Payment;
+use App\Helpers\UuidModel;
+
 
 class Damage extends Model
 {
-    use HasFactory, Uuid;
+    use HasFactory, UuidModel;
     protected $table='damages';
     protected $fillable = 
     ['rental_id','payment_id','damage_description','price_for_damage'];

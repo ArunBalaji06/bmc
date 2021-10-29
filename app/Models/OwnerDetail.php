@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Owner;
 use App\Models\OwnerProof;
+use App\Helpers\UuidModel;
 
 class OwnerDetail extends Model
 {
-    use HasFactory, Uuid;
+    use HasFactory, UuidModel;
     protected $table='owner_details';
     protected $fillable = 
     ['owner_id','owner_image','phone_number','address'];

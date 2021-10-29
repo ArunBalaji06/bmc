@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Requests;
 use App\Models\ClientDetail;
+use App\Helpers\UuidModel;
+
 
 class Client extends Model
 {
-    use HasFactory, Uuid;
+    use HasFactory, UuidModel;
     protected $table='clients';
     protected $fillable = 
     ['name','email','password'];
