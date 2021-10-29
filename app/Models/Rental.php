@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Payment;
 use App\Models\Damage;
 use App\Models\Complain;
+use App\Helpers\UuidModel;
+
 
 class Rental extends Model
 {
-    use HasFactory, Uuid;
+    use HasFactory, UuidModel;
     protected $table='rentals';
     protected $fillable = 
     ['receive_destination','receive_at','return_destination','return_at'];

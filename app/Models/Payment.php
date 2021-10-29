@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Requests;
 use App\Models\Rental;
 use App\Models\Damage;
+use App\Helpers\UuidModel;
+
 
 class Payment extends Model
 {
-    use HasFactory, Uuid;
+    use HasFactory, UuidModel;
     protected $table='payments';
     protected $fillable = 
     ['days','price','advance_payment','total_payment','rental','damage_amount','damage_payment_status'];

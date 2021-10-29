@@ -23,8 +23,8 @@
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-                <form class="mx-1 mx-md-4" action="/post-register">
-
+                <form class="mx-1 mx-md-4" method="post" action="/owner-post-register" enctype="multipart/form-data">
+                  @csrf
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
@@ -57,14 +57,54 @@
                     </div>
                   </div>
 
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="number" name="phone_number" class="form-control" />
+                      <label class="form-label" for="form3Example4cd">Phone Number</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" name="address" class="form-control" />
+                      <label class="form-label" for="form3Example4cd">Address</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="file" name="photo" class="form-control" />
+                      <label class="form-label" for="form3Example4cd">Owner Photo</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="file" name="owner_proof_front" class="form-control" />
+                      <label class="form-label" for="form3Example4cd">Owner Proof Front</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="file" name="owner_proof_back" class="form-control" />
+                      <label class="form-label" for="form3Example4cd">Owner Proof Front</label>
+                    </div>
+                  </div>
+
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                    <button type="submit" class="btn btn-primary btn-lg" >Register</button>
                   </div>
 
 
                 </form>
                 <div>
-              <p class="mb-0">Don't have an account? <a href="{{route('getlogin')}}" class="text-black fw-bold">Login</a></p>
+              <p class="mb-0">Don't have an account? <a href="{{route('owner.getlogin')}}" class="text-black fw-bold">Login</a></p>
             </div>
 
               </div>
@@ -80,5 +120,6 @@
     </div>
   </div>
 </section>
+
 
 @endsection

@@ -20,6 +20,7 @@ class CreateClientProofsTable extends Migration
             $table->string('client_proof_front');
             $table->string('client_proof_back');
             $table->timestamps();
+         
         });
     }
 

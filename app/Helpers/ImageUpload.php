@@ -23,10 +23,14 @@ trait imageUpload {
 
         /** Instead of storage I will demo you storing in PUBLIC path same as that of assets folder */
         if ($type == 'owner-register-car') {
-            $uploadPath = public_path() . '/owner/registered-car/';
+            $uploadPath = public_path() . '/owner/registered-car';
         } elseif($type == 'owner-image') {
             $uploadPath = public_path() . '/owner/profile-image';
-        }
+        } elseif($type == 'owner-proof-front') {
+            $uploadPath = public_path() . '/owner/proofs-front';
+        } elseif($type == 'owner-proof-back') {
+            $uploadPath = public_path() . '/owner/proofs-back';
+        }  
 
         /** Moving the uploaded path of public folder */
         $attachment->move($uploadPath, $attachmentNewName);
