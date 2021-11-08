@@ -73,9 +73,7 @@
 
 
                 </form>
-                <div>
-              <p class="mb-0">Don't have an account? <a href="{{route('getlogin')}}" class="text-black fw-bold">Login</a></p>
-            </div>
+                
 
               </div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">

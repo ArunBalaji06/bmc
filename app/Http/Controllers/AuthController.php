@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Requests\OwnerProfileRequest;
 use App\Helpers\ImageUpload;
 use App\Helpers\UuidModel;
+use Illuminate\Support\Facades\File;
 
 class AuthController extends Controller
 {
@@ -29,16 +30,16 @@ class AuthController extends Controller
 
     // Owner register->post
     public function postRegister(Request $request) {
-        // dd($request->photo1->getClientOriginalExtension());
+    
         $password = $request->password;
         $confirmPassword = $request->confirm_password;
         if (request()->hasFile('photo')) {   
             $image1 = $this->commonImageUpload($request->photo, 'owner-image');
         }
-        if (request()->hasFile('photo')) {   
+        if (request()->hasFile('owner_proof_front')) {   
             $image2 = $this->commonImageUpload($request->owner_proof_front, 'owner-proof-front');
         }
-        if (request()->hasFile('photo')) {   
+        if (request()->hasFile('owner_proof_back')) {   
             $image3 = $this->commonImageUpload($request->owner_proof_back, 'owner-proof-back');
         }
         if($password == $confirmPassword) {
@@ -90,7 +91,7 @@ class AuthController extends Controller
     // owner logout->get
     public function logout() {
         Session::flush();
-        return redirect('/login');
+        return redirect('/owner-login');
     }
 
     // Owner proof
@@ -98,10 +99,10 @@ class AuthController extends Controller
         try{
             $ownerId = Session::get('id');
             if (request()->hasFile('owner_proof_front')) {   
-                $image1 = $this->commonImageUpload($request->photo, 'owner-proof');
+                $image1 = $this->commonImageUpload($request->photo, 'owner-proof-front');
             }
             if (request()->hasFile('owner_proof_back')) {   
-                $image2 = $this->commonImageUpload($request->photo, 'owner-proof');
+                $image2 = $this->commonImageUpload($request->photo, 'owner-proof-back');
             }
             $findDetail = $this->ownerDetail->where('owner_id',$ownerId)->first();
             $findOwner = $this->ownerProof->create([
@@ -130,15 +131,25 @@ class AuthController extends Controller
     // Owner update profile->post
     public function updateProfile(Request $request) {
         try{
+            // dd($request);
             $ownerId = Session::get('id');
-            if (request()->hasFile('photo')) {   
-                $image = $this->commonImageUpload($request->photo, 'owner-image');
-            }
-            if (request()->hasFile('owner_proof_front')) {   
-                $image1 = $this->commonImageUpload($request->owner_proof_front, 'owner-proof-front');
-            }
-            if (request()->hasFile('owner_proof_back')) {   
-                $image2 = $this->commonImageUpload($request->owner_proof_back, 'owner-proof-back');
+            $owenrDetailId = $this->ownerDetail->where('owner_id',$ownerId)->first();
+            $ownerProofs = $this->ownerProof->where('owner_detail_id',$owenrDetailId->id)->first();
+            // dd($ownerProofs);
+            $img['photo'] = $owenrDetailId->owner_image;
+            $img['owner_proof_front'] = $ownerProofs->owner_proof_front;
+            $img['owner_proof_back'] = $ownerProofs->owner_proof_back;
+            
+            if (request()->hasFile('photo') || request()->hasFile('owner_proof_front') || request()->hasFile('owner_proof_back')) {
+
+                $this->updatingImage($img,$request);
+                $image  = $request->has('photo') ? $this->commonImageUpload($request->photo, 'owner-image') : $img['photo'];
+                $image1 = $request->has('owner_proof_front') ? $this->commonImageUpload($request->owner_proof_front, 'owner-proof-front') : $img['owner_proof_front'];
+                $image2 = $request->has('owner_proof_back') ? $this->commonImageUpload($request->owner_proof_back, 'owner-proof-back') : $img['owner_proof_back'];
+            } else {
+                $image = $img['photo'];
+                $image1 = $img['owner_proof_front'];
+                $image2 = $img['owner_proof_back'];
             }
 
             $mainDetail = $this->owner->where('id',$ownerId)->update([
@@ -149,14 +160,13 @@ class AuthController extends Controller
                 'owner_id'     => $ownerId,
                 'phone_number' => $request->phone_number,
                 'address'      => $request->address,
-                'owner_image'        => $image
+                'owner_image'  => $image
             ]);
-            $owenrDetailId = $this->ownerDetail->where('owner_id',$ownerId)->first();
             // dd($owenrDetailId->id);
             $findProof = $this->ownerProof->where('owner_detail_id',$owenrDetailId->id)->update([
-                'owner_detail_id' => $owenrDetailId->id,
+                'owner_detail_id'   => $owenrDetailId->id,
                 'owner_proof_front' => $image1,
-                'owner_proof_back' => $image2
+                'owner_proof_back'  => $image2
             ]);
             return back()->with('success','Owner profile updated successfully');
             }
@@ -171,6 +181,5 @@ class AuthController extends Controller
         Session::flush();
         $deletOwner = $this->owner->where('id',$id)->delete();
     }
-
     
 }

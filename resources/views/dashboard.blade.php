@@ -28,7 +28,7 @@
                     <p class="m-0">ADE-00234</p>
                   </a>
                 </div>
-                <a href="/logout" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
+                <a href="/owner-logout" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
                    Logout </a>
               </div>
             </div>
@@ -135,29 +135,28 @@
             <!-- image card row starts here -->
             <div class="row col-md-12">
             @foreach($cars as $car)
-            <div class="">
-              <div class="col-sm-4 col-md-3 stretch-card grid-margin">
+              <div class="col-sm-4 col-md-4 stretch-card">
                 <div class="card">
                   <div class="card-body p-0">
-                    <img class="img-fluid w-100" src="{{ asset('owner/registered-car/'.$car)}}" alt="" />
+                    <img class="img-fluid w-100" src="{{ asset('owner/registered-car/'.$car->photo)}}" alt="car-image" />
                   </div>
                   <div class="card-body px-3 text-dark">
                     <div class="d-flex justify-content-between">
                       <p class="text-muted font-13 mb-0"></p>
                       <i class="mdi mdi-heart-outline"></i>
                     </div>
-                    <h5 class="font-weight-semibold"> Cosy Studio flat in London </h5>
+                    <h5 class="font-weight-semibold"> {{$car->model}}</h5>
                     <div class="d-flex justify-content-between font-weight-semibold">
-                      <p class="mb-0">
-                        <i class="mdi mdi-star star-color pr-1"></i>4.60 (35) </p>
-                      <p class="mb-0">$5,267/night</p>
-                    </div>
+                      </div>
+                      <!-- Button trigger modal -->
+                <a type="button" href="/view-car/{{$car->id}}" class="btn btn-primary col-md-4">
+                  View car
+                </a>
                   </div>
                 </div>
               </div>
-              
+             
               @endforeach
-              </div>
               <!-- <div class="col-sm-4 stretch-card grid-margin">
                 <div class="card">
                   <div class="card-body p-0">

@@ -50,12 +50,13 @@ class CarRegisterController extends Controller
                              ->with('request')
                              ->with('request.client')
                              ->with('request.payment')
-                             ->get();
-        $carRental = $this->rental->where('payment_id',$viewCar->request->payment->id)
-                                  ->with('damage')
-                                  ->with('complain')
-                                  ->get();
-        return view('cars.view-car',compact('viewCar','carRental'));
+                             ->first();
+                            //  dd($viewCar);
+        // $carRental = $this->rental->where('payment_id',$viewCar->request->payment->id)
+        //                           ->with('damage')
+        //                           ->with('complain')
+        //                           ->get();
+        return view('cars.view-car',compact('viewCar'));
     }
 
     // Single car edit-page->get
@@ -66,11 +67,18 @@ class CarRegisterController extends Controller
     }
 
     // Update a car->post
-    public function updateCar(CarRegisterRequest $request) {
+    public function updateCar(Request $request) {
         try {
             $ownerId = Session::get('id');
-            if (request()->hasFile('photo')) {   
-                $image = $this->commonImageUpload($request->photo, 'owner-register-car');
+            if (request()->hasFile('car_image')) { 
+                $imgsCar = $this->car->where('id',$request->id)->first();
+                $img['car_image'] = $imgsCar->photo;
+                $this->updatingImage($img,$request);
+                $image = $this->commonImageUpload($request->car_image, 'owner-register-car');
+            } else {
+                $imgCar = $this->car->where('id',$request->id)->first();
+                // dd($imgCar);
+                $image = $imgCar->photo;
             }
             $findCar = $this->car->where('id',$request->id)->update([
                 'owner_id'          => $ownerId,

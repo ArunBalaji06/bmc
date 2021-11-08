@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarRegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BookingController;
-use App\Http\Controllers\ClientAuthController;
+use App\Http\Controllers\CilentAuthController;
 
 
 
@@ -42,10 +42,23 @@ Route::get('/edit-car/{id}',[CarRegisterController::class,'editCar'])->name('car
 Route::post('/update-car',[CarRegisterController::class,'updateCar'])->name('car.update_car');
 Route::get('/delete-car/{id}',[CarRegisterController::class,'deleteCar'])->name('car.delete');
 
-//Owner-Dashboard
+//Owner-Dashboard //
 Route::get('/bmc',[DashboardController::class,'index'])->name('owner.bmc');
 
 // Booking
 Route::get('/request/{id}',[BookingController::class,'requestGiven'])->name('booking.request');
 Route::get('/accept-request/{id}',[BookingController::class,'acceptRequest'])->name('booking.accept');
 Route::post('/reject-request',[BookingController::class,'rejectRequest'])->name('booking.reject');
+
+// Client Auth //
+Route::get('/client-register',[CilentAuthController::class,'getRegister'])->name('client.getregister');
+Route::post('/client-post-register',[CilentAuthController::class,'postRegister'])->name('client.postregister');
+Route::get('/view-client-profile',[CilentAuthController::class,'viewProfile'])->name('client.viewprofile');
+Route::post('/update-client-profile',[CilentAuthController::class,'editProfile'])->name('client.updateprofile');
+Route::get('/client-login',[CilentAuthController::class,'getLogin'])->name('client.login');
+Route::post('/client-post-login',[CilentAuthController::class,'postLogin'])->name('client.postlogin');
+Route::get('/client-logout',[CilentAuthController::class,'logout'])->name('client.logout');
+Route::get('/client-delete',[CilentAuthController::class,'deleteClient'])->name('client.delete');
+
+
+
