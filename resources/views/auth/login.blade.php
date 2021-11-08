@@ -22,7 +22,7 @@
 
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
               <p class="text-white-50 mb-5">Please enter your login and password!</p>
-            <form methos="post" action="{{route('postlogin')}}">
+            <form methos="post" action="{{route('owner.postlogin')}}">
               <div class="form-outline form-white mb-4">
                 <input type="email" name="email" class="form-control form-control-lg" />
                 <label class="form-label" for="typeEmailX">Email</label>
@@ -46,7 +46,7 @@
             </div>
 
             <div>
-              <p class="mb-0">Don't have an account? <a href="{{route('getregister')}}" class="text-white-50 fw-bold">Sign Up</a></p>
+              <p class="mb-0">Don't have an account? <a href="{{route('owner.getregister')}}" class="text-white-50 fw-bold">Sign Up</a></p>
             </div>
 
           </div>

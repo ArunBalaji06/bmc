@@ -26,6 +26,7 @@ class DashboardController extends Controller
     public function index() {
         $ownerId = Session::get('id');
         $cars = $this->car->where('owner_id',$ownerId)->get();
+        // dd($cars);
         // $requ = $this->req->where('owner_id',$ownerId)->with('payment')->with('payment.rental')->get();
         // $transaction = $this->payment->where('request_id',$requ->id)->get();
         return view('dashboard',compact('cars'));
